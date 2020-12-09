@@ -65,9 +65,7 @@ def execute(command):
                 hum = intvar / 100
             elif(meas_type == PRESS):
                 press = intvar / 1000
-        print("temp: {}".format(temp))
-        print("hum: {}".format(hum))
-        print("press: {}".format(press))
+        print("T:{} H:{} P:{}".format(temp, hum, press))
         db = "*"
         db_server = "*"
         port = ":8086/"
@@ -85,8 +83,6 @@ def execute(command):
 
         url = db_server + port + write + db 
         data = meas + tag_loc + tag_type + tag_host + temperature + humidity + pressure
-        print(url)
-        print(data)
         r = requests.post(url, auth=HTTPBasicAuth("*", "*"), data=data.encode("utf-8"))
         print("result: {}".format(r))
 
