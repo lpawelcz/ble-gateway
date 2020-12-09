@@ -16,6 +16,9 @@ disable:
 stop:
 	sudo systemctl stop ble-gateway.service
 
+restart:
+	sudo systemctl restart ble-gateway.service
+
 status:
 	sudo systemctl status ble-gateway.service
 
