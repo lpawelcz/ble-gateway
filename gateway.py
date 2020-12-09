@@ -4,9 +4,9 @@ import requests
 from requests.auth import HTTPBasicAuth
 import sys
 
-get_press = 'sudo gatttool -i hcio0 -b 24:6F:28:B2:1F:06 --char-read --handle=0x002e | awk \'{print $6$5$4$3}\''
-get_temp = 'sudo gatttool -i hcio0 -b 24:6F:28:B2:1F:06 --char-read --handle=0x002a | awk \'{print $6$5$4$3}\''
-get_hum = 'sudo gatttool -i hcio0 -b 24:6F:28:B2:1F:06 --char-read --handle=0x002c | awk \'{print $6$5$4$3}\''
+get_press = 'sudo gatttool -i hcio0 -b **:**:**:**:**:** --char-read --handle=0x002e | awk \'{print $6$5$4$3}\''
+get_temp = 'sudo gatttool -i hcio0 -b **:**:**:**:**:** --char-read --handle=0x002a | awk \'{print $6$5$4$3}\''
+get_hum = 'sudo gatttool -i hcio0 -b **:**:**:**:**:** --char-read --handle=0x002c | awk \'{print $6$5$4$3}\''
 
 TEMP = 'a'
 PRESS = 'e'
@@ -30,7 +30,7 @@ def read_all():
 
 
 def stream_read():
-    execute("gatttool -i hcio0 -b 24:6F:28:B2:1F:06 --listen --char-read --handle=0x002c")
+    execute("gatttool -i hcio0 -b **:**:**:**:**:** --listen --char-read --handle=0x002c")
 
     
 def execute(command):
@@ -68,17 +68,17 @@ def execute(command):
         print("temp: {}".format(temp))
         print("hum: {}".format(hum))
         print("press: {}".format(press))
-        db = "pogoda"
-        db_server = "http://seven.ict.pwr.wroc.pl"
+        db = "*"
+        db_server = "*"
         port = ":8086/"
         write = "write?db="
-        loc = "Wołów\,pl"
+        loc = "*\,pl"
         typ = "indoor"
-        host = "korzen"
+        host = "*"
         tag_loc = "location=" + loc + ","
         tag_type = "type=" + typ + ","
         tag_host = "host=" + host + " "
-        meas = "exec_pogoda,"
+        meas = "*,"
         temperature = "temperature=" + str(temp) + ","
         humidity = "humidity=" + str(hum) + ","
         pressure = "pressure=" + str(press)
@@ -87,7 +87,7 @@ def execute(command):
         data = meas + tag_loc + tag_type + tag_host + temperature + humidity + pressure
         print(url)
         print(data)
-        r = requests.post(url, auth=HTTPBasicAuth("iot_user", ".iot_user."), data=data.encode("utf-8"))
+        r = requests.post(url, auth=HTTPBasicAuth("*", "*"), data=data.encode("utf-8"))
         print("result: {}".format(r))
 
 

@@ -1,0 +1,12 @@
+[Unit]
+Description=Low Reliability BLE Gateway based on Raspberry Pi Zero W
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+Restart=always
+ExecStart=/usr/bin/python3 /home/pi/ble-gateway/gateway.py
+
+[Install]
+WantedBy=multi-user.target
